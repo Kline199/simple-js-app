@@ -1,6 +1,5 @@
 alert('Hello world');
 
-
 var favoriteFood = "Tacos";
 
 // Use document.write() to display the value of favoriteFood
