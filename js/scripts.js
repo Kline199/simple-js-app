@@ -8,9 +8,9 @@ let pokemonList = [
   height: 17,
   types: ["fire", "flying"]};
 
-{ name: "Pikachu",
+{ name: "Beedrill",
   height: 4,
-  types: ["electric"]};
+  types: ["bug", "poison"]};
 
 ];
 
