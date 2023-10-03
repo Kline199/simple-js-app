@@ -1,13 +1,13 @@
 let pokemonList = [
-{name: "Bulbasaur",
+{name: 'Bulbasaur',
   height: 7,
-  types: ["grass", "poison"]},
-{name: "Charizard",
+  types: ['grass', 'poison']},
+{name: 'Charizard',
   height: 17,
-  types: ["fire", "flying"]},
-{name: "Beedrill",
+  types: ['fire', 'flying']},
+{name: 'Beedrill',
   height: 4,
-  types: ["bug", "poison"]},
+  types: ['bug', 'poison']},
 ];
 
 
