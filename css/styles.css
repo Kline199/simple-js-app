@@ -1,1 +1,17 @@
+/* styles.css */
+body {
+  background-color: black;
+}
+
+button {
+  background-color: orange;
+  color: white;
+  text-align: center;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+button:hover {
+  border: 1px solid white;
+}
 
