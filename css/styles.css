@@ -1,17 +1,36 @@
-/* styles.css */
+
 body {
-  background-color: black;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
 }
 
-button {
-  background-color: orange;
-  color: white;
+.pokemon-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pokemon-list li {
+  margin: 10px;
   text-align: center;
-  border: 1px solid white;
+}
+
+.custom-button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-button:hover {
-  border: 1px solid white;
+/* Media queries for different screen sizes */
+@media (max-width: 768px) {
+  .custom-button {
+    padding: 8px 16px;
+  }
 }
-
