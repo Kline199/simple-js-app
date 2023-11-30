@@ -1,3 +1,4 @@
+// scripts.js
 let pokemonRepository = (function () {
   let pokemonList = [];
 
@@ -26,7 +27,34 @@ let pokemonRepository = (function () {
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(() => {
-      console.log(pokemon);
+      // Update modal content
+      document.getElementById('modal-name').textContent = pokemon.name;
+      document.getElementById('modal-height').textContent = `Height: ${pokemon.height}`;
+      document.getElementById('modal-image').src = pokemon.imgUrl;
+
+      // Show modal
+      const modal = document.getElementById('modal');
+      modal.style.display = 'block';
+
+      // Close modal when clicking on the close button
+      const closeButton = document.querySelector('.close');
+      closeButton.addEventListener('click', function () {
+        modal.style.display = 'none';
+      });
+
+      // Close modal when clicking outside the modal
+      window.addEventListener('click', function (event) {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+
+      // Close modal with the 'Esc' key
+      window.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && modal.style.display === 'block') {
+          modal.style.display = 'none';
+        }
+      });
     });
   }
 
