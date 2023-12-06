@@ -1,4 +1,3 @@
-// scripts.js
 let pokemonRepository = (function () {
   let pokemonList = [];
 
@@ -27,13 +26,18 @@ let pokemonRepository = (function () {
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(() => {
+      // Create modal content dynamically
+      const modalContent = createModalContent();
+
       // Update modal content
-      document.getElementById('modal-name').textContent = pokemon.name;
-      document.getElementById('modal-height').textContent = `Height: ${pokemon.height}`;
-      document.getElementById('modal-image').src = pokemon.imgUrl;
+      modalContent.querySelector('#modal-name').textContent = pokemon.name;
+      modalContent.querySelector('#modal-height').textContent = `Height: ${pokemon.height}`;
+      modalContent.querySelector('#modal-image').src = pokemon.imgUrl;
 
       // Show modal
       const modal = document.getElementById('modal');
+      modal.innerHTML = ''; // Clear existing content
+      modal.appendChild(modalContent);
       modal.style.display = 'block';
 
       // Close modal when clicking on the close button
@@ -68,6 +72,7 @@ let pokemonRepository = (function () {
             detailsUrl: item.url,
           };
           add(pokemon);
+          addListItem(pokemon);
         });
       })
       .catch((error) => {
@@ -88,9 +93,34 @@ let pokemonRepository = (function () {
       });
   }
 
-  const ul = document.querySelector('.pokemon-list');
+  function createModalContent() {
+    const modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
 
-  ul.innerHTML = '';
+    const closeButton = document.createElement('span');
+    closeButton.classList.add('close');
+    closeButton.innerHTML = '&times;';
+    modalContent.appendChild(closeButton);
+
+    const modalName = document.createElement('h2');
+    modalName.id = 'modal-name';
+    modalContent.appendChild(modalName);
+
+    const modalHeight = document.createElement('p');
+    modalHeight.id = 'modal-height';
+    modalContent.appendChild(modalHeight);
+
+    const modalImage = document.createElement('img');
+    modalImage.id = 'modal-image';
+    modalImage.alt = 'Pokemon Image';
+    modalContent.appendChild(modalImage);
+
+    return modalContent;
+  }
+
+  const ul = document.createElement('ul');
+  ul.classList.add('pokemon-list');
+  document.body.appendChild(ul);
 
   return {
     getAll: getAll,
