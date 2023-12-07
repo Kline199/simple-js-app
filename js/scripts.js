@@ -1,3 +1,7 @@
+const ul = document.createElement('ul');
+ul.classList.add('pokemon-list');
+document.body.appendChild(ul);
+
 let pokemonRepository = (function () {
   let pokemonList = [];
 
@@ -26,6 +30,7 @@ let pokemonRepository = (function () {
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(() => {
+
       const modalContent = createModalContent();
 
       modalContent.querySelector('#modal-name').textContent = pokemon.name;
@@ -60,9 +65,8 @@ let pokemonRepository = (function () {
     return fetch('https://pokeapi.co/api/v2/pokemon/')
       .then((response) => response.json())
       .then((data) => {
-   
         ul.innerHTML = '';
-  
+
         data.results.forEach((item) => {
           const pokemon = {
             name: item.name,
@@ -114,10 +118,6 @@ let pokemonRepository = (function () {
 
     return modalContent;
   }
-
-  const ul = document.createElement('ul');
-  ul.classList.add('pokemon-list');
-  document.body.appendChild(ul);
 
   return {
     getAll: getAll,
