@@ -1,6 +1,7 @@
 const ul = document.createElement('ul');
-ul.classList.add('pokemon-list');
-document.body.appendChild(ul);
+ul.classList.add('list-group');
+ul.setAttribute('role', 'list'); // ARIA role
+document.getElementById('pokemon-list').appendChild(ul);
 
 let pokemonRepository = (function () {
   let pokemonList = [];
@@ -17,9 +18,14 @@ let pokemonRepository = (function () {
 
   function addListItem(pokemon) {
     let listItem = document.createElement('li');
+    listItem.classList.add('list-group-item');
+    listItem.setAttribute('role', 'listitem'); // ARIA role
     let button = document.createElement('button');
     button.innerText = pokemon.name;
-    button.classList.add('custom-button');
+    button.classList.add('btn', 'btn-primary');
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#modal');
+    button.setAttribute('aria-label', `View details of ${pokemon.name}`);
     listItem.appendChild(button);
     ul.appendChild(listItem);
 
@@ -30,7 +36,6 @@ let pokemonRepository = (function () {
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(() => {
-
       const modalContent = createModalContent();
 
       modalContent.querySelector('#modal-name').textContent = pokemon.name;
@@ -38,24 +43,24 @@ let pokemonRepository = (function () {
       modalContent.querySelector('#modal-image').src = pokemon.imgUrl;
 
       const modal = document.getElementById('modal');
-      modal.innerHTML = ''; 
+      modal.innerHTML = '';
       modal.appendChild(modalContent);
-      modal.style.display = 'block';
+      $(modal).modal('show');
 
       const closeButton = document.querySelector('.close');
       closeButton.addEventListener('click', function () {
-        modal.style.display = 'none';
+        $(modal).modal('hide');
       });
 
       window.addEventListener('click', function (event) {
         if (event.target === modal) {
-          modal.style.display = 'none';
+          $(modal).modal('hide');
         }
       });
 
       window.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape' && modal.style.display === 'block') {
-          modal.style.display = 'none';
+        if (event.key === 'Escape' && $(modal).is(':visible')) {
+          $(modal).modal('hide');
         }
       });
     });
@@ -101,6 +106,7 @@ let pokemonRepository = (function () {
     const closeButton = document.createElement('span');
     closeButton.classList.add('close');
     closeButton.innerHTML = '&times;';
+    closeButton.setAttribute('aria-label', 'Close modal');
     modalContent.appendChild(closeButton);
 
     const modalName = document.createElement('h2');
