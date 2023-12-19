@@ -45,18 +45,11 @@ let pokemonRepository = (function () {
       const modal = document.getElementById('modal');
       modal.innerHTML = '';
       modal.appendChild(modalContent);
-      $(modal).modal('show');
 
       const closeButton = document.querySelector('.close');
-      closeButton.addEventListener('click', function () {
-        $(modal).modal('hide');
-      });
+      closeButton.setAttribute('data-dismiss', 'modal'); // Bootstrap approach
 
-      window.addEventListener('click', function (event) {
-        if (event.target === modal) {
-          $(modal).modal('hide');
-        }
-      });
+      $(modal).modal('show');
 
       window.addEventListener('keydown', function (event) {
         if (event.key === 'Escape' && $(modal).is(':visible')) {
@@ -103,10 +96,11 @@ let pokemonRepository = (function () {
     const modalContent = document.createElement('div');
     modalContent.classList.add('modal-content');
 
-    const closeButton = document.createElement('span');
+    const closeButton = document.createElement('button');
     closeButton.classList.add('close');
     closeButton.innerHTML = '&times;';
     closeButton.setAttribute('aria-label', 'Close modal');
+    closeButton.setAttribute('data-dismiss', 'modal'); // Bootstrap approach
     modalContent.appendChild(closeButton);
 
     const modalName = document.createElement('h2');

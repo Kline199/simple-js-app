@@ -27,6 +27,12 @@ body {
   cursor: pointer;
 }
 
+.btn-primary {
+  color: #fff;
+  background-color: darkblue;
+  border-color: #007bff;
+}
+
 .modal {
   display: none;
   position: fixed;
