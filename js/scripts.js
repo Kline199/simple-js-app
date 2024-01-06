@@ -103,7 +103,7 @@ let pokemonRepository = (function () {
     closeButton.setAttribute('data-dismiss', 'modal'); // Bootstrap approach
     modalContent.appendChild(closeButton);
 
-    const modalName = document.createElement('h2');
+    const modalName = document.createElement('h1'); // Change from 'h2' to 'h1'
     modalName.id = 'modal-name';
     modalContent.appendChild(modalName);
 
