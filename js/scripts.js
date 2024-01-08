@@ -49,13 +49,7 @@ let pokemonRepository = (function () {
       const closeButton = document.querySelector('.close');
       closeButton.setAttribute('data-dismiss', 'modal'); // Bootstrap approach
 
-      $(modal).modal('show');
-
-      window.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape' && $(modal).is(':visible')) {
-          $(modal).modal('hide');
-        }
-      });
+      
     });
   }
 
